@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function traslacion(){
+            //leer datos de vo
+            var ao = document.getElementById('vo').value
+            ao = ao.split(',') //redefine ao como arreglo 
+            aon = [] //crea un arreglo vacio
+            ao.forEach((elem)=>{//convierte los numeros en string a num y los asigna en el vector 'aon'
+                aon.push(Number(elem))
+            });
+            alert(aon[0]+aon[1]+aon[2]);
+        }
+    </script>
+</head>
+<body>
+    <p>Vector original 
+        <input size = 12 id="vo"/><!--vector orginal-->
+        <button id = 'traslacion' onclick="traslacion()">Traslacion</button>
+    </p>
+    <p>Vector traslacion 
+        <input size = 12 id="vt"/>
+    </p>
+    <p>Vector trasladado 
+        <input size = 12 id="vr"/>
+    </p>
+    <button id ='btn_tr' onclick="traslacion()"></button>
+</body>
+</html>
