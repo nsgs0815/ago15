@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function byId(strId){
+            return document.getElementById(strId).value
+        }
+        
+        function strArr2Num(arr,lim){
+            arr = arr.split(lim)
+            newArr = [];  //arreglo vacio
+            arr.forEach((elem)=>{  //convierte los numeros en string a num y los asigna en el vector 'aon'
+                newArr.push(Number(elem))
+            });
+            return newArr;
+        }
+
+        function sum (array1, array2){
+            return array1.map(function (num,idx){
+                return num+ array2[idx];
+            });
+        }
+
+        function traslacion(){
+            vOriginal = strArr2Num(byId('vo'),',');
+            vTras = strArr2Num(byId('vt'),',')
+            vFinal = sum(vOriginal,vTras);
+            alert(aon[0]+aon[1]+aon[2]);  
+        }
+
+        
+    </script>
+</head>
+<body>
+    <p>Vector original 
+        <input size = 12 id="vo"/><!--vector orginal-->
+        <button id = 'traslacion' onclick="traslacion()">Traslacion</button>
+    </p>
+    <p>Vector traslacion 
+        <input size = 12 id="vt"/>
+    </p>
+    <p>Vector trasladado 
+        <input size = 12 id="vr"/>
+    </p>
+    <button id ='btn_tr' onclick="traslacion()"></button>
+</body>
+</html>
