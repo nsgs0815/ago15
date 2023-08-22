@@ -20,7 +20,9 @@
             return newArr;
         }
 
-        function operacion(){
+        function operacion(v_original,v_tras){
+            tx = v_tras[0]; ty = v_tras[1]; tz = v_tras[2];
+
             let mTras = [
                 [1,0,0,tx],
                 [0,1,0,ty],
@@ -28,18 +30,31 @@
                 [0,0,0,1],
             ];
 
-            array2 = [];
+            for(let i=0;i<mTras.length;i++){
+                for(let j=0;j<mTras.length;j++){
+                    if(i==0 && j==0){
+                        let xTras = (mTras[i][j] * v_original[j]) + (mTras[i][mTras.length-1]*v_original[mTras.length-1]);
+                    }else if(i==1 && j==1){
+                        let yTras = (mTras[i][j] * v_original[j]) + (mTras[i][mTras.length-1]*v_original[mTras.length-1]);
+                    }else if(i==2 && j==2){
+                        let zTras = (mTras[i][j] * v_original[j]) + (mTras[i][mTras.length-1]*v_original[mTras.length-1])
+                    }
+                }
+            }
 
-            //array2[0]=
-            result.innerHTML = mTras[0][0] ;
+            v_final = [];
+            v_final[0]=xTras; v_final[1]=yTras; v_final[2]=zTras;
 
+            return v_final;
         }
 
         function traslacion() {
             vOriginal = strArr2Num(byId('vo'),',');
-
-            //vFinal = ;
+            vTraslacion = strArr2Num(byId('vt'),',');
+            vFinal = operacion(vOriginal,vTraslacion);
             //result.innerHTML = vFinal;
+
+            alert(vFinal);
         }
 
         
@@ -55,12 +70,12 @@
         <br/>
         <br/>
         Vector de traslación
-        <input size = 12 id="vt"/><!--vector trasalacion-->
-        <button id = 'traslacion' onclick="operacion()">Trasladar</button>
+        <input size = 12 id="vt"/><!--vector traslacion-->
+        <button id = 'traslacion' onclick="traslacion()">Trasladar</button>
     </p>
        
     <p>Vector trasladado 
-        <output id="result" for="input-a input-b"></output>
+        <output id="result" for=""></output>
     </p>
 </body>
 </html>
