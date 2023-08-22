@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotar</title>
+    <h1>Rotar vectores</h1>
+    <p>Escriba el vector que quiere Rotar, separe cada elemento con una coma ','</p>
+    <script>
+        function byId(strId){
+            return document.getElementById(strId).value
+        }
+        
+        function strArr2Num(arr,lim){
+            arr = arr.split(lim)
+            newArr = [];  //arreglo vacio
+            arr.forEach((elem)=>{  //convierte los numeros en string a num y los asigna en el vector 'aon'
+                newArr.push(Number(elem))
+            });
+            return newArr;
+        }
+
+        function operacion_X(v_original,angulo){
+            rx = v_rot[0]; ry = v_rot[1]; rz = v_rot[2];
+            angRad=angulo * Math.PI / 180;
+            cosA = Math.cos(angRad);
+            senA = Math.sin(angRad);
+            sen_A = - senA;
+
+            let mRot = [
+                [1,0,0,0],
+                [0,cosA,sen_A,0],
+                [0,senA,cosA,0],
+                [0,0,0,1],
+            ];
+
+           
+            let xRot = (mRot[0][0] * v_original[0]);
+            let yRot = (mRot[1][1] * v_original[1])+(mRot[1][2] * v_original[2]);
+            let zRot = (mRot[2][1] * v_original[1])+(mRot[2][2] * v_original[2]);
+       
+            v_final = [];
+            v_final[0]=xRot; v_final[1]=yRot; v_final[2]=zRot;
+
+            return v_final;
+        }
+
+        function rotarX() {
+            vOriginal = strArr2Num(byId('vo'),',');
+            angle = Number(byId('angle'));
+            vFinal = operacion(vOriginal,angle);
+            //result.innerHTML = vFinal;
+            // alert(vFinal);
+            alert(angle);
+        }
+
+        
+    </script>
+</head>
+<body>
+    <p>Vector original 
+        <input size = 12 id="vo"/><!--vector orginal-->
+    </p>
+    <br/>
+
+    <p>Escriba el angulo de rotación y seleccione sobre cuál eje desea rotar el vector
+        <br/>
+        <br/>
+        Angulo
+        <input size = 12 id="angle"/><!--angulo-->
+        <br/>
+        <br/>
+
+        <button id = 'rotarX' onclick="rotarX()">Rotar en eje X</button> 
+        <button id = 'rotarY' onclick="rotarY()">Rotar en eje X</button> 
+        <button id = 'rotarZ' onclick="rotarZ()">Rotar en eje X</button>
+    </p>
+    
+</body>
+</html>
