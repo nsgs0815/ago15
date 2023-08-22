@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escalar</title>
+    <h1>Escalar vectores</h1>
+    <p>Escriba el vector que quiere escalar, separe cada elemento con una coma ','</p>
+    <script>
+        function byId(strId){
+            return document.getElementById(strId).value
+        }
+        
+        function strArr2Num(arr,lim){
+            arr = arr.split(lim)
+            newArr = [];  //arreglo vacio
+            arr.forEach((elem)=>{  //convierte los numeros en string a num y los asigna en el vector 'aon'
+                newArr.push(Number(elem))
+            });
+            return newArr;
+        }
+
+        function operacion(v_original,v_esc){
+            sx = v_esc[0]; sy = v_esc[1]; sz = v_esc[2];
+
+            let mEsc = [
+                [sx,0,0,0],
+                [0,sy,0,0],
+                [0,0,sz,0],
+                [0,0,0,1],
+            ];
+
+           
+            let xEsc = (mEsc[0][0] * v_original[0]);
+            let yEsc = (mEsc[1][1] * v_original[1]);
+            let zEsc = (mEsc[2][2] * v_original[2]);
+       
+            v_final = [];
+            v_final[0]=xTras; v_final[1]=yTras; v_final[2]=zTras;
+
+            return v_final;
+        }
+
+        function escalar() {
+            vOriginal = strArr2Num(byId('vo'),',');
+            vEscalar = strArr2Num(byId('vt'),',');
+            vFinal = operacion(vOriginal,vTraslacion);
+            //result.innerHTML = vFinal;
+            alert(vFinal);
+        }
+
+        
+    </script>
+</head>
+<body>
+    <p>Vector original 
+        <input size = 12 id="vo"/><!--vector orginal-->
+    </p>
+    <br/>
+
+    <p>Escriba el vector de escala, separe cada elemento con una coma ','
+        <br/>
+        <br/>
+        Vector de escala
+        <input size = 12 id="vt"/><!--vector traslacion-->
+        <button id = 'traslacion' onclick="escalar()">Escalar</button>
+    </p>
+       
+    <p>Vector trasladado 
+        <output id="result" for=""></output>
+    </p>
+</body>
+</html>
