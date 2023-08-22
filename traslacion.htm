@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traslacion</title>
+    <h1>Translacion de vectores</h1>
+    <p>Escriba el vector que quiere trasladar, separe cada elemento con una coma ','</p>
+    <script>
+        function byId(strId){
+            return document.getElementById(strId).value
+        }
+        
+        function strArr2Num(arr,lim){
+            arr = arr.split(lim)
+            newArr = [];  //arreglo vacio
+            arr.forEach((elem)=>{  //convierte los numeros en string a num y los asigna en el vector 'aon'
+                newArr.push(Number(elem))
+            });
+            return newArr;
+        }
+
+        function operacion(){
+            let mTras = [
+                [1,0,0,tx],
+                [0,1,0,ty],
+                [0,0,1,tz],
+                [0,0,0,1],
+            ];
+
+            array2 = [];
+
+            //array2[0]=
+            result.innerHTML = mTras[0][0] ;
+
+        }
+
+        function traslacion() {
+            vOriginal = strArr2Num(byId('vo'),',');
+
+            //vFinal = ;
+            //result.innerHTML = vFinal;
+        }
+
+        
+    </script>
+</head>
+<body>
+    <p>Vector original 
+        <input size = 12 id="vo"/><!--vector orginal-->
+    </p>
+    <br/>
+
+    <p>Escriba el vector de traslación, separe cada elemento con una coma ','
+        <br/>
+        <br/>
+        Vector de traslación
+        <input size = 12 id="vt"/><!--vector trasalacion-->
+        <button id = 'traslacion' onclick="operacion()">Trasladar</button>
+    </p>
+       
+    <p>Vector trasladado 
+        <output id="result" for="input-a input-b"></output>
+    </p>
+</body>
+</html>
