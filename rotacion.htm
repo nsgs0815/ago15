@@ -20,16 +20,14 @@
             return newArr;
         }
 
-        function operacion_X(v_original,angulo){
-            rx = v_rot[0]; ry = v_rot[1]; rz = v_rot[2];
+        function operacionX(v_original,angulo){
             angRad=angulo * Math.PI / 180;
             cosA = Math.cos(angRad);
             senA = Math.sin(angRad);
-            sen_A = - senA;
 
             let mRot = [
                 [1,0,0,0],
-                [0,cosA,sen_A,0],
+                [0,cosA,-senA,0],
                 [0,senA,cosA,0],
                 [0,0,0,1],
             ];
@@ -48,10 +46,70 @@
         function rotarX() {
             vOriginal = strArr2Num(byId('vo'),',');
             angle = Number(byId('angle'));
-            vFinal = operacion(vOriginal,angle);
+            vFinal = operacionX(vOriginal,angle);
             //result.innerHTML = vFinal;
-            // alert(vFinal);
-            alert(angle);
+            alert(vFinal);
+        }
+
+        function operacionY(v_original,angulo){
+            angRad=angulo * Math.PI / 180;
+            cosA = Math.cos(angRad);
+            senA = Math.sin(angRad);
+
+            let mRot = [
+                [cosA,0,senA,0],
+                [0,1,0,0],
+                [-senA,0,cosA,0],
+                [0,0,0,1],
+            ];
+
+           
+            let xRot = (mRot[0][0] * v_original[0])+(mRot[0][2]*v_original[2]);
+            let yRot = (mRot[1][1] * v_original[1]);
+            let zRot = (mRot[2][0] * v_original[0])+(mRot[2][2] * v_original[2]);
+       
+            v_final = [];
+            v_final[0]=xRot; v_final[1]=yRot; v_final[2]=zRot;
+
+            return v_final;
+        }
+
+        function rotarY() {
+            vOriginal = strArr2Num(byId('vo'),',');
+            angle = Number(byId('angle'));
+            vFinal = operacionY(vOriginal,angle);
+            //result.innerHTML = vFinal;
+            alert(vFinal);
+        }
+        function operacionZ(v_original,angulo){
+            angRad=angulo * Math.PI / 180;
+            cosA = Math.cos(angRad);
+            senA = Math.sin(angRad);
+
+            let mRot = [
+                [cosA,-senA,0,0],
+                [senA,cosA,0,0],
+                [0,0,1,0],
+                [0,0,0,1],
+            ];
+
+           
+            let xRot = (mRot[0][0] * v_original[0])+(mRot[0][1] * v_original[1]);
+            let yRot = (mRot[1][0] * v_original[0])+(mRot[1][1] * v_original[1]);
+            let zRot = (mRot[2][2] * v_original[2]);
+       
+            v_final = [];
+            v_final[0]=xRot; v_final[1]=yRot; v_final[2]=zRot;
+
+            return v_final;
+        }
+
+        function rotarZ() {
+            vOriginal = strArr2Num(byId('vo'),',');
+            angle = Number(byId('angle'));
+            vFinal = operacionZ(vOriginal,angle);
+            //result.innerHTML = vFinal;
+            alert(vFinal);
         }
 
         
@@ -72,8 +130,8 @@
         <br/>
 
         <button id = 'rotarX' onclick="rotarX()">Rotar en eje X</button> 
-        <button id = 'rotarY' onclick="rotarY()">Rotar en eje X</button> 
-        <button id = 'rotarZ' onclick="rotarZ()">Rotar en eje X</button>
+        <button id = 'rotarY' onclick="rotarY()">Rotar en eje Y</button> 
+        <button id = 'rotarZ' onclick="rotarZ()">Rotar en eje Z</button>
     </p>
     
 </body>
